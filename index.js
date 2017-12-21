@@ -30,6 +30,7 @@ export default class RemoteComponent extends Component {
     let response = await fetch(url);
     let jsString = await response.text();
     let filterJs = this.renameJS(jsString);
+    console.log(filterJs);
     eval(filterJs);
     let Component = Remote;
     this.setState({ Component });
@@ -68,10 +69,7 @@ export default class RemoteComponent extends Component {
     this.setState({ Component });
   };
 
-  renameJS = string => string
-    .replace(/"use strict";/g, "")
-    .replace(/React/g, "_react2.default")
-    .replace(/\(Component\)/g, "(_react.Component)")
+  renameJS = string => string.replace(/"use strict";/g, "").replace(/'use strict';/g, "")
 
   render() {
     let { Component } = this.state;
