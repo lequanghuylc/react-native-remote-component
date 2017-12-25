@@ -30,7 +30,7 @@ export default class RemoteComponent extends Component {
     let response = await fetch(url);
     let jsString = await response.text();
     let filterJs = this.renameJS(jsString);
-    console.log(filterJs);
+    // console.log(filterJs);
     eval(filterJs);
     let Component = Remote;
     this.setState({ Component });
